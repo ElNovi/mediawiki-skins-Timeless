@@ -88,7 +88,7 @@ class TimelessTemplate extends BaseTemplate {
 					$this->outputCategories();
 					?>
 				</div>
-				<div id="mw-content">
+				<div id="content">
 				<div class="mw-body" role="main">
 					<?php
 					if ( $this->data['sitenotice'] ) {
@@ -124,7 +124,7 @@ class TimelessTemplate extends BaseTemplate {
 					?>
 					</div>
 					<div class="visual-clear"></div>
-					<div class="mw-body-content">
+					<div id="bodyContent" class="mw-body-content">
 						<div id="contentSub">
 							<?php
 							if ( $this->data['subtitle'] ) {
@@ -509,8 +509,10 @@ class TimelessTemplate extends BaseTemplate {
 				$currentSet = 'user';
 			} elseif (in_array( $navKey, array( 'whatlinkshere', 'print', 'info', 'pagelog', 'recentchangeslinked', 'permalink' ) ) ) {
 				$currentSet = 'page-tertiary';
-			} else {
+			} elseif (in_array( $navKey, array( 'upload', 'specialpages' ) ) ) {
 				$currentSet = 'general';
+			} else {
+				$currentSet = 'page-primary';
 			}
 			$sortedPileOfTools[$currentSet][$navKey] = $navBlock;
 		}
